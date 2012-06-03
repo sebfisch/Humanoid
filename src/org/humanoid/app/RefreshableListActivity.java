@@ -28,13 +28,13 @@ public abstract class RefreshableListActivity<Model, Item> extends
 
 	public abstract void onItemClick(Item item);
 
-	public abstract void onPreRefresh();
+	public void onPreRefresh() {}
 
 	public abstract Model loadModel();
 
 	public abstract void displayModel(Model model);
 
-	public abstract void onPostRefresh(Model model);
+	public void onPostRefresh(Model model) {}
 
 	@Override
 	public void onCreate(final Bundle savedState) {
