@@ -19,3 +19,10 @@ Installation
 [protobuf-2.4.1.zip]: http://protobuf.googlecode.com/files/protobuf-2.4.1.zip
 
 [ActionBarSherlock]: http://actionbarsherlock.com/usage.html
+
+License
+-------
+
+Copyright by Sebastian Fischer, [CC-BY]
+
+[CC-BY]: http://creativecommons.org/licenses/by/3.0/
