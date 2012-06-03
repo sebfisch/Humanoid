@@ -1,0 +1,28 @@
+<project
+    name="Humanoid"
+    basedir="."
+    default="dist" >
+
+    <description>
+		Humnaoid Android Utilities
+    </description>
+
+    <property
+        name="src"
+        location="src" />
+
+    <property
+        name="bin"
+        location="bin" />
+
+    <target name="jar" >
+
+        <jar
+            basedir="bin/classes/"
+            destfile="humanoid-0.1.jar" >
+
+            <include name="org/humanoid/**" />
+        </jar>
+    </target>
+
+</project>
