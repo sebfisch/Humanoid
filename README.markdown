@@ -23,6 +23,6 @@ Installation
 License
 -------
 
-Copyright by Sebastian Fischer, [CC-BY]
+Copyright: Sebastian Fischer, [CC-BY]
 
 [CC-BY]: http://creativecommons.org/licenses/by/3.0/
