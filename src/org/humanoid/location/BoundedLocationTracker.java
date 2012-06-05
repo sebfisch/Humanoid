@@ -31,6 +31,7 @@ public class BoundedLocationTracker implements LocationListener {
 
 	public void startListening(final String provider, final long minTime,
 			final float minDistance) {
+		this.lastKnownLocation = null;
 		this.manager.requestLocationUpdates(provider, minTime, minDistance,
 				this);
 	}

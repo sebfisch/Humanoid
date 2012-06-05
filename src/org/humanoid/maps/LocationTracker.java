@@ -9,7 +9,6 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 
-
 public class LocationTracker extends Tracker {
 
 	private transient final BoundedLocationTracker tracker;
