@@ -37,6 +37,7 @@ public class BoundedLocationTracker implements LocationListener {
 
 	public void stopListening() {
 		this.manager.removeUpdates(this);
+		this.lastKnownLocation = null;
 		this.listener = null;
 	}
 
