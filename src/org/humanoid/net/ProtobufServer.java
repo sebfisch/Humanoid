@@ -6,8 +6,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import org.humanoid.R;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
