@@ -5,14 +5,19 @@ import org.humanoid.location.BoundedLocationTracker.BoundedLocationListener;
 
 import android.app.Activity;
 import android.content.Context;
+import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
 
 public class LocationTracker extends Tracker {
 
 	private transient final BoundedLocationTracker tracker;
 	private transient final Listener listener;
+
+	private transient final String coarseLocationProvider;
+	private transient final String fineLocationProvider;
 
 	private transient LocationOverlay overlay;
 
@@ -47,11 +52,23 @@ public class LocationTracker extends Tracker {
 	public LocationTracker(final Activity context, final double minLat,
 			final double minLon, final double maxLat, final double maxLon) {
 		super();
-		this.tracker = new BoundedLocationTracker(
-				(LocationManager) context
-						.getSystemService(Context.LOCATION_SERVICE),
-				minLat, minLon, maxLat, maxLon);
+
+		final LocationManager locationManager = (LocationManager) context
+				.getSystemService(Context.LOCATION_SERVICE);
+
+		this.tracker = new BoundedLocationTracker(locationManager, minLat,
+				minLon, maxLat, maxLon);
 		this.listener = new Listener();
+
+		final Criteria coarseCriteria = new Criteria();
+		coarseCriteria.setAccuracy(Criteria.ACCURACY_COARSE);
+		this.coarseLocationProvider = locationManager.getBestProvider(
+				coarseCriteria, true);
+
+		final Criteria fineCriteria = new Criteria();
+		fineCriteria.setAccuracy(Criteria.ACCURACY_FINE);
+		this.fineLocationProvider = locationManager.getBestProvider(
+				fineCriteria, true);
 	}
 
 	public void setOverlay(final LocationOverlay overlay) {
@@ -61,8 +78,22 @@ public class LocationTracker extends Tracker {
 
 	@Override
 	public void startListening() {
-		this.tracker.startListening(LocationManager.GPS_PROVIDER, 0, 0);
-		this.tracker.startListening(LocationManager.NETWORK_PROVIDER, 0, 0);
+		if (this.coarseLocationProvider != null) {
+			Log.w("LocationTracker", "start tracking "
+					+ this.coarseLocationProvider);
+			this.tracker.startListening(this.coarseLocationProvider, 0, 0);
+		} else {
+			Log.w("LocationTracker", "coarse location not availabe");
+		}
+
+		if (this.fineLocationProvider != null) {
+			Log.w("LocationTracker", "start tracking "
+					+ this.fineLocationProvider);
+			this.tracker.startListening(this.fineLocationProvider, 0, 0);
+		} else {
+			Log.w("LocationTracker", "fine location not availabe");
+		}
+
 		this.tracker.setLocationListener(this.listener);
 	}
 
