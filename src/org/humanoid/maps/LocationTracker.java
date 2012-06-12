@@ -79,16 +79,12 @@ public class LocationTracker extends Tracker {
 	@Override
 	public void startListening() {
 		if (this.coarseLocationProvider != null) {
-			Log.w("LocationTracker", "start tracking "
-					+ this.coarseLocationProvider);
 			this.tracker.startListening(this.coarseLocationProvider, 0, 0);
 		} else {
 			Log.w("LocationTracker", "coarse location not availabe");
 		}
 
 		if (this.fineLocationProvider != null) {
-			Log.w("LocationTracker", "start tracking "
-					+ this.fineLocationProvider);
 			this.tracker.startListening(this.fineLocationProvider, 0, 0);
 		} else {
 			Log.w("LocationTracker", "fine location not availabe");

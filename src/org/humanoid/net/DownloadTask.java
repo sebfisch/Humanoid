@@ -162,7 +162,6 @@ public class DownloadTask extends AsyncTask<Object, Long, File> {
 
 	@Override
 	protected void onPostExecute(final File file) {
-		Log.w("download", "finished");
 		this.downloadedFile = file;
 
 		if (this.callback != null) {
